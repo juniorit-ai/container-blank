@@ -1,0 +1,29 @@
+{
+    "build": { "dockerfile": "Dockerfile" },
+    "hostRequirements": {
+      "cpus": 4
+    },
+    "waitFor": "onCreateCommand",
+    "updateContentCommand": "",
+    "postCreateCommand": "",
+    "postAttachCommand": {
+      "server": ""
+    },
+    "customizations": {
+      "vscode": {
+        "extensions": ["JuniorIT-AI.vscode-juniorit"]
+        },
+      "codespaces": {
+        "openFiles": [
+          ""
+        ]
+      }
+    },
+    "portsAttributes": {
+      "9000": {
+        "label": "Application",
+        "onAutoForward": "openPreview"
+      }
+    },
+    "forwardPorts": [9000]
+  }
