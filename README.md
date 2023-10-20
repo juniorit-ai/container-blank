@@ -18,6 +18,6 @@ sudo apt update
 sudo apt install gh git
 
 gh auth status
-``
+```
 
 https://cli.github.com/manual/gh
