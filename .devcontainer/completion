@@ -1,0 +1,29 @@
+banner="\033[1;34m     __          _          _____________   ____
+ __ / /_ _____  (_)__  ____/  _/_  __/ _ | /  _/
+/ // / // / _ \/ / _ \/ __// /  / / / __ |_/ /  
+\___/\_,_/_//_/_/\___/_/ /___/ /_(_)_/ |_/___/  
+                                                 
+\033[0mTo get started with your task, use the following command:
+> start your task: \033[1;34mjuniorit your-task-uuid\033[0m
+
+Once you've completed your task, you can submit it for review with:
+> submit your task for review: \033[1;34mjuniort submit\033[0m
+
+We wish you the best of luck with your tasks!
+"
+
+ENV_FILE="$HOME/.ji"
+
+if [ -f "$ENV_FILE" ]; then
+    source "$ENV_FILE"
+fi
+
+if [ -z "$WELCOME_COUNT" ]; then
+    export WELCOME_COUNT=0
+fi
+
+if [ "$WELCOME_COUNT" -lt 4 ]; then
+    echo -e "$banner"
+    WELCOME_COUNT=$((WELCOME_COUNT + 1))
+    echo "export WELCOME_COUNT=$WELCOME_COUNT" > "$ENV_FILE"
+fi

@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+ARG JUNIORIT_DEV_VER=2023102801
+
 ARG USERNAME=juniorit
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -15,15 +17,16 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-RUN apt install -y apt-utils wget ca-certificates locales locales-all
+RUN apt install -y ca-certificates locales locales-all
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV JUNIORIT_DEV_VER 2023102801
+ENV JUNIORIT_DEV_VER $JUNIORIT_DEV_VER
 COPY juniorit /bin/juniorit
+COPY completion /etc/bash_completion
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
