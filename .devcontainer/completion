@@ -22,7 +22,13 @@ if [ -z "$WELCOME_COUNT" ]; then
     export WELCOME_COUNT=0
 fi
 
-if [ "$WELCOME_COUNT" -lt 10 ]; then
+if [ -n "$CODESPACE_NAME" ]; then
+    LIMIT=8
+else
+    LIMIT=5
+fi
+
+if [ "$WELCOME_COUNT" -lt $LIMIT ]; then
     echo -e "$banner"
     WELCOME_COUNT=$((WELCOME_COUNT + 1))
     echo "export WELCOME_COUNT=$WELCOME_COUNT" > "$ENV_FILE"
