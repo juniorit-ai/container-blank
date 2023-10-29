@@ -3,6 +3,8 @@
     "hostRequirements": {
       "cpus": 2
     },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/juniorit/workspace/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+    "workspaceFolder": "/home/juniorit/workspace",
     "waitFor": "onCreateCommand",
     "updateContentCommand": "",
     "postCreateCommand": "",
