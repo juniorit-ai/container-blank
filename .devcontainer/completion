@@ -3,13 +3,13 @@ banner="\033[1;34m     __          _          _____________   ____
 / // / // / _ \/ / _ \/ __// /  / / / __ |_/ /  
 \___/\_,_/_//_/_/\___/_/ /___/ /_(_)_/ |_/___/  
                                                  
-\033[0mTo get started with your task, use the following command:
-> start your dev project: \033[1;34mjuniorit sign_in_token\033[0m
+\033[0mTo get started with your project, use the following commands:
+> link your dev account: \033[1;34mjuniorit sign_in_token\033[0m
 
-Once you've completed your task, you can submit it for review with:
-> submit your task for review: \033[1;34mjuniort submit\033[0m
+Once you've completed your project, you can submit it for review with:
+> submit your project for review: \033[1;34mjuniort submit\033[0m
 
-We wish you the best of luck with your tasks!
+We wish you the best of luck with your projects!
 "
 
 ENV_FILE="$HOME/.ji"
