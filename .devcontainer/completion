@@ -4,7 +4,7 @@ banner="\033[1;34m     __          _          _____________   ____
 \___/\_,_/_//_/_/\___/_/ /___/ /_(_)_/ |_/___/  
                                                  
 \033[0mTo get started with your task, use the following command:
-> start your task: \033[1;34mjuniorit your-task-uuid\033[0m
+> start your dev project: \033[1;34mjuniorit sign_in_token\033[0m
 
 Once you've completed your task, you can submit it for review with:
 > submit your task for review: \033[1;34mjuniort submit\033[0m
