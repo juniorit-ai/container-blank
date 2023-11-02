@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ARG JUNIORIT_DEV_VER=2023110201
+ARG JUNIORIT_DEV_VER=2023110202
 
 ARG USERNAME=juniorit
 ARG USER_UID=1000
@@ -21,6 +21,8 @@ RUN apt install -y ca-certificates locales locales-all
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
 
 RUN rm -rf /var/lib/apt/lists/*
 
