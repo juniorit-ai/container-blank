@@ -29,5 +29,9 @@ COPY juniorit /usr/local/bin/juniorit
 COPY jcscript /usr/local/bin/jcscript
 COPY completion /etc/bash_completion
 
+WORKDIR /home/$USERNAME/workspace
+
+RUN chown -R $USERNAME:$USERNAME /home/$USERNAME/workspace
+
 # [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
