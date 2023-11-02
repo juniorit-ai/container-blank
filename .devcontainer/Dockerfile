@@ -17,7 +17,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-RUN apt install -y ca-certificates locales locales-all git
+RUN apt install -y ca-certificates locales locales-all
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
@@ -25,7 +25,8 @@ ENV LC_ALL en_US.UTF-8
 RUN rm -rf /var/lib/apt/lists/*
 
 ENV JUNIORIT_DEV_VER $JUNIORIT_DEV_VER
-COPY juniorit /bin/juniorit
+COPY juniorit /usr/local/bin/juniorit
+COPY jcscript /usr/local/bin/jcscript
 COPY completion /etc/bash_completion
 
 # [Optional] Set the default user. Omit if you want to keep the default as root.
