@@ -22,18 +22,34 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git build-essential php-cli wget curl cmake python3 python3-pip vim zip unzip
 
-RUN rm -rf /var/lib/apt/lists/*
+#RUN rm -rf /var/lib/apt/lists/*
 
 ENV JUNIORIT_DEV_VER $JUNIORIT_DEV_VER
 COPY juniorit /usr/local/bin/juniorit
 COPY jcscript /usr/local/bin/jcscript
+COPY jcode /usr/local/bin/jcode
 COPY completion /etc/bash_completion
 
 WORKDIR /home/$USERNAME/workspace
-
 RUN chown -R $USERNAME:$USERNAME /home/$USERNAME/workspace
 
-# [Optional] Set the default user. Omit if you want to keep the default as root.
 USER $USERNAME
+
+#ENV NVM_DIR /home/$USERNAME/.nvm
+#ENV NODE_VERSION 18.18.2
+#RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash \  
+#    && . $NVM_DIR/nvm.sh \
+#    && nvm install $NODE_VERSION \
+#    && nvm alias default $NODE_VERSION \
+#    && nvm use default
+
+RUN cd /home/$USERNAME \
+    && git clone https://github.com/emscripten-core/emsdk.git \
+    && cd emsdk \
+    && ./emsdk install latest \
+    && ./emsdk activate latest \
+    && echo 'source "/home/juniorit/emsdk/emsdk_env.sh"' >> /home/$USERNAME/.bash_profile
+
+ENTRYPOINT sleep infinity

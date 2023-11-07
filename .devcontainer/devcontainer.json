@@ -1,31 +1,41 @@
 {
-    "build": { "dockerfile": "Dockerfile" },
-    "hostRequirements": {
-      "cpus": 2
-    },
-    "workspaceMount": "source=${localWorkspaceFolder},target=/home/juniorit/workspace/${localWorkspaceFolderBasename},type=bind,consistency=cached",
-    "workspaceFolder": "/home/juniorit/workspace",
-    "waitFor": "onCreateCommand",
-    "updateContentCommand": "",
-    "postCreateCommand": "",
-    "postAttachCommand": {
-      "server": ""
-    },
-    "customizations": {
-      "vscode": {
-        "extensions": ["JuniorIT-AI.vscode-juniorit"]
-        },
-      "codespaces": {
-        "openFiles": [
-          ""
-        ]
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "overrideCommand": false,
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/juniorit/workspace/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/home/juniorit/workspace",
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "",
+  "postCreateCommand": "",
+  "postAttachCommand": {
+    "server": ""
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "JuniorIT-AI.vscode-juniorit"
+      ],
+      "settings": {
+        "extensions.ignoreRecommendations": true
       }
     },
-    "portsAttributes": {
-      "9000": {
-        "label": "Application",
-        "onAutoForward": "openPreview"
-      }
-    },
-    "forwardPorts": [9000]
-  }
+    "codespaces": {
+      "openFiles": [
+        ""
+      ]
+    }
+  },
+  "portsAttributes": {
+    "9000": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [
+    9000
+  ]
+}

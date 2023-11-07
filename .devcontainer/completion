@@ -33,3 +33,4 @@ if [ "$WELCOME_COUNT" -lt $LIMIT ]; then
     WELCOME_COUNT=$((WELCOME_COUNT + 1))
     echo "export WELCOME_COUNT=$WELCOME_COUNT" > "$ENV_FILE"
 fi
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"

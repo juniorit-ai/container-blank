@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# This script expects one argument: the path to the file you want to open
+
+# Check if an argument was provided
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <path-to-file>"
+    exit 1
+fi
+
+FILE_PATH=$1
+
+# Check if the file exists
+if [ ! -f "$FILE_PATH" ]; then
+    echo "Error: File does not exist."
+    exit 1
+fi
+
+# Check if 'code' command is available
+if ! command -v code &> /dev/null; then
+    echo "VS Code command 'code' could not be found. Please ensure it is installed and in your PATH."
+    exit 1
+fi
+
+# Open the file with VS Code in the existing window
+code -r "$FILE_PATH"
