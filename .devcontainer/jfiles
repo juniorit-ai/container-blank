@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Define the port range
+START_PORT=9000
+END_PORT=9100
+
+# Find an available port
+for ((port = START_PORT; port <= END_PORT; port++)); do
+  if ! netstat -tuln | grep -q ":$port "; then
+    echo "Available port: $port"
+    php -S 0.0.0.0:$START_PORT /usr/local/bin/files-router.php
+    exit 0
+  fi
+done
+
+echo "No available port found in the range $START_PORT to $END_PORT"

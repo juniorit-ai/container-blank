@@ -8,6 +8,10 @@
   "overrideCommand": false,
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/juniorit/workspace/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/home/juniorit/workspace",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/Dropbox/github_workspace/juniorit-courses/online-courses/clang/session-2/project,target=/home/juniorit/workspace/c-session-2,type=bind,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/Dropbox/github_workspace/sdl-tetris,target=/home/juniorit/workspace/sdl-tetris,type=bind,consistency=cached"
+  ],
   "waitFor": "onCreateCommand",
   "updateContentCommand": "",
   "postCreateCommand": "",
@@ -17,7 +21,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "JuniorIT-AI.vscode-juniorit"
+        "JuniorIT-AI.vscode-juniorit",
+        "ms-vscode.cpptools-extension-pack"
       ],
       "settings": {
         "extensions.ignoreRecommendations": true

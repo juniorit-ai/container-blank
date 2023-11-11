@@ -22,7 +22,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git build-essential php-cli wget curl cmake python3 python3-pip vim zip unzip
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git build-essential php-cli wget curl cmake python3 python3-pip vim zip unzip telnet net-tools
 
 #RUN rm -rf /var/lib/apt/lists/*
 
@@ -30,9 +30,17 @@ ENV JUNIORIT_DEV_VER $JUNIORIT_DEV_VER
 COPY juniorit /usr/local/bin/juniorit
 COPY jcscript /usr/local/bin/jcscript
 COPY jcode /usr/local/bin/jcode
+COPY jfiles /usr/local/bin/jfiles
+COPY files-router.php /usr/local/bin/files-router.php
 COPY completion /etc/bash_completion
 
+COPY php.ini /usr/local/etc/php.ini
+ENV PHP_INI_SCAN_DIR /usr/local/etc
+
 WORKDIR /home/$USERNAME/workspace
+
+COPY .vscode /home/$USERNAME/workspace/.vscode
+
 RUN chown -R $USERNAME:$USERNAME /home/$USERNAME/workspace
 
 USER $USERNAME
@@ -50,6 +58,7 @@ RUN cd /home/$USERNAME \
     && cd emsdk \
     && ./emsdk install latest \
     && ./emsdk activate latest \
+    && ./upstream/emscripten/embuilder build sdl2 sdl2_image \
     && echo 'source "/home/juniorit/emsdk/emsdk_env.sh"' >> /home/$USERNAME/.bash_profile
 
 ENTRYPOINT sleep infinity

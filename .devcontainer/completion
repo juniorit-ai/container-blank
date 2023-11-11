@@ -23,9 +23,9 @@ if [ -z "$WELCOME_COUNT" ]; then
 fi
 
 if [ -n "$CODESPACE_NAME" ]; then
-    LIMIT=8
+    LIMIT=18
 else
-    LIMIT=5
+    LIMIT=15
 fi
 
 if [ "$WELCOME_COUNT" -lt $LIMIT ]; then
