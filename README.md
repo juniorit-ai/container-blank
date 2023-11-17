@@ -21,3 +21,9 @@ gh auth status
 ```
 
 https://cli.github.com/manual/gh
+
+
+docker build
+
+cd .devcontainer
+docker build -t haicam/juniorit-clang:latest . 

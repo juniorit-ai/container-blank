@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ARG JUNIORIT_DEV_VER=2023110202
+ARG JUNIORIT_DEV_VER=2023111702
 
 ARG USERNAME=juniorit
 ARG USER_UID=1000
@@ -22,11 +22,12 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git build-essential php-cli wget curl cmake python3 python3-pip vim zip unzip telnet net-tools
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git build-essential php-cli wget curl cmake python3 python3-pip vim zip unzip telnet net-tools lsof openssh-client
 
 #RUN rm -rf /var/lib/apt/lists/*
 
 ENV JUNIORIT_DEV_VER $JUNIORIT_DEV_VER
+COPY jdaemon /usr/local/bin/jdaemon
 COPY juniorit /usr/local/bin/juniorit
 COPY jcscript /usr/local/bin/jcscript
 COPY jcode /usr/local/bin/jcode
@@ -61,4 +62,5 @@ RUN cd /home/$USERNAME \
     && ./upstream/emscripten/embuilder build sdl2 sdl2_image \
     && echo 'source "/home/juniorit/emsdk/emsdk_env.sh"' >> /home/$USERNAME/.bash_profile
 
-ENTRYPOINT sleep infinity
+#ENTRYPOINT sleep infinity
+ENTRYPOINT /usr/local/bin/jdaemon

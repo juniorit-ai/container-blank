@@ -1,7 +1,8 @@
 <?php
 $rootPath = realpath(getcwd());
 
-function serveFile($path) {
+function serveFile($path)
+{
     if (is_file($path)) {
         // Determine the MIME type of the file
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -31,7 +32,8 @@ function serveFile($path) {
     }
 }
 
-function listDirectory($path, $rootPath) {
+function listDirectory($path, $rootPath)
+{
     $relativePath = str_replace($rootPath, '', $path);
     $relativePath = ltrim($relativePath, DIRECTORY_SEPARATOR);
 
@@ -53,7 +55,8 @@ function listDirectory($path, $rootPath) {
     echo "</ul>";
 }
 
-function uploadFile($path) {
+function uploadFile($path)
+{
     if (!empty($_FILES['uploaded_file'])) {
         $uploadedFile = $_FILES['uploaded_file']['tmp_name'];
         $destination = $path . DIRECTORY_SEPARATOR . $_FILES['uploaded_file']['name'];
@@ -81,16 +84,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>JuniorIT.AI File Browser</title>
     <link rel="icon" type="image/x-icon" href="https://juniorit.ai/favicon.ico">
 </head>
+
 <body>
     <h1>JuniorIT.AI's File Browser</h1>
-    <?php if (is_dir($currentPath)) { listDirectory($currentPath, $rootPath); } ?>
+    <?php if (is_dir($currentPath)) {
+        listDirectory($currentPath, $rootPath);
+    } ?>
     <form action="" method="post" enctype="multipart/form-data">
         <input type="file" name="uploaded_file">
         <input type="submit" value="Upload">
     </form>
 </body>
+
 </html>

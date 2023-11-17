@@ -8,7 +8,7 @@ END_PORT=9100
 for ((port = START_PORT; port <= END_PORT; port++)); do
   if ! netstat -tuln | grep -q ":$port "; then
     echo "Available port: $port"
-    php -S 0.0.0.0:$START_PORT /usr/local/bin/files-router.php
+    php -S localhost:$START_PORT /usr/local/bin/files-router.php
     exit 0
   fi
 done
