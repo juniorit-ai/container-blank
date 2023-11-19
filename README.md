@@ -26,4 +26,4 @@ https://cli.github.com/manual/gh
 docker build
 
 cd .devcontainer
-docker build -t haicam/juniorit-clang:latest . 
+docker build -t haicam/juniorit-clang:v1.0.1 . 

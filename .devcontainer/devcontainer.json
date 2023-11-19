@@ -1,5 +1,5 @@
 {
-  "image": "haicam/juniorit-clang:latest",
+  "image": "haicam/juniorit-clang:v1.0.1",
   "hostRequirements": {
     "cpus": 2
   },
@@ -7,7 +7,11 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/juniorit/workspace/${localWorkspaceFolderBasename},type=bind,consistency=cached",
   "workspaceFolder": "/home/juniorit/workspace",
   "mounts": [
+    "source=/home/frankhe/Dropbox/github_workspace/clang-game-project,target=/home/juniorit/workspace/c-session-1,type=bind,consistency=cached"
   ],
+  "containerEnv": {
+    "GAMECRAFT_PROJECT_PATH": "/home/juniorit/workspace/${localWorkspaceFolderBasename}"
+  },
   "waitFor": "onCreateCommand",
   "updateContentCommand": "",
   "postCreateCommand": "",
