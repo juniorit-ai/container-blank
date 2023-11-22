@@ -1,7 +1,5 @@
 {
-  "build": {
-    "dockerfile": "Dockerfile-dev"
-  },
+  "image": "haicam/juniorit-clang:v1.0.3",
   "hostRequirements": {
     "cpus": 2
   },
@@ -11,6 +9,9 @@
   "mounts": [
     "source=/home/frankhe/Dropbox/github_workspace/clang-game-project,target=/home/juniorit/workspace/c-session-1,type=bind,consistency=cached"
   ],
+  "containerEnv": {
+    "GAMECRAFT_PROJECT_PATH": "/home/juniorit/workspace/${localWorkspaceFolderBasename}"
+  },
   "waitFor": "onCreateCommand",
   "updateContentCommand": "",
   "postCreateCommand": "",
