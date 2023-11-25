@@ -2,22 +2,33 @@
 
 # Check if at least one argument is provided
 if [ -z "$1" ]; then
-    echo "Usage: cscript <source_file.c> [gcc flags]"
+    echo "Usage: cscript <source_file.c or source_file.cpp> [compiler flags]"
     exit 1
 fi
 
 # Extract the source file
 source_file=$1
-shift  # Shift the arguments so that $@ contains only additional gcc flags
+shift  # Shift the arguments so that $@ contains only additional compiler flags
 
 # Extract the filename without the extension for the output file
 filename=$(basename -- "$source_file")
 filename="${filename%.*}"
 
-# Compile the C program with any additional flags provided
-gcc "$source_file" -o "/tmp/${filename}" "$@"
+# Determine the file extension
+extension="${source_file##*.}"
 
-# Check if gcc succeeded
+# Select the compiler based on the file extension
+compiler=""
+if [ "$extension" = "c" ]; then
+    compiler="gcc"
+else
+    compiler="g++"
+fi
+
+# Compile the program with the selected compiler and any additional flags provided
+$compiler "$source_file" -o "/tmp/${filename}" "$@"
+
+# Check if compilation succeeded
 if [ $? -ne 0 ]; then
     echo "Compilation failed."
     exit 1
@@ -32,4 +43,3 @@ rm "/tmp/${filename}"
 
 # Exit with the status of the program execution
 exit $status
-
